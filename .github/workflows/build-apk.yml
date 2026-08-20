@@ -19,7 +19,7 @@ jobs:
           node-version: 22
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -29,6 +29,12 @@ jobs:
 
       - name: Install Capacitor CLI & Android
         run: npm install @capacitor/core @capacitor/cli @capacitor/android
+
+      - name: Ensure Capacitor Config Exists
+        run: |
+          if [ ! -f "capacitor.config.json" ] && [ ! -f "capacitor.config.ts" ]; then
+            echo '{"appId":"com.studymate.app","appName":"StudyMate","webDir":"dist"}' > capacitor.config.json
+          fi
 
       - name: Build Web Application
         run: npm run build
