@@ -1,0 +1,6 @@
+{
+  "name": "StudyMate",
+  "description": "A clean, vibrant, student-friendly study companion app featuring interactive subjects catalog, study notes manager, multi-format quizzes with instant grading, and customizable Pomodoro study timer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
