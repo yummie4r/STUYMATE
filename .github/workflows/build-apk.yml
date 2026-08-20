@@ -19,7 +19,7 @@ jobs:
           node-version: 22
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -27,17 +27,20 @@ jobs:
       - name: Install Node Dependencies
         run: npm install
 
+      - name: Install Capacitor CLI & Android
+        run: npm install @capacitor/core @capacitor/cli @capacitor/android
+
       - name: Build Web Application
         run: npm run build
 
       - name: Initialize Android Platform
         run: |
           if [ ! -d "android" ]; then
-            npx cap add android
+            npx --yes @capacitor/cli add android
           fi
 
       - name: Sync Capacitor Assets
-        run: npx cap sync android
+        run: npx --yes @capacitor/cli sync android
 
       - name: Make Gradle Executable
         run: chmod +x android/gradlew
